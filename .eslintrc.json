@@ -24,6 +24,9 @@
       "prettier"
   ],
   "rules": {
+    "react/jsx-props-no-spreading": 0,
+    "object-curly-newline": "off",
+
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

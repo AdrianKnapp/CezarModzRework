@@ -1,0 +1,70 @@
+@import '../../styles/globalClasses';
+
+.headerContainer {
+  width: 100%;
+  height: 80px;
+
+  background: var(--gray-500);
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.headerContent {
+  width: 100%;
+  max-width: 1120px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerNav {
+  height: 100%;
+
+  ul {
+    height: 100%;
+
+    display: flex;
+
+    li {
+      height: 100%;
+
+      list-style: none;
+
+      a {
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        padding: 0 15px;
+
+        transition: color .2s;
+
+        &.active {
+          position: relative;
+          @extend .titleStyle;
+
+          &::after {
+            content: '';
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            border-radius: 3px 3px 0 0;
+            background-color: var(--orange-900);
+          }
+        }
+
+        &:hover {
+          color: var(--white-900);
+        }
+      }
+    }
+  }
+}

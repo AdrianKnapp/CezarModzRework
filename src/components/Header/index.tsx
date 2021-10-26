@@ -1,19 +1,22 @@
 import Image from 'next/image';
+import styles from './styles.module.scss';
 
 export default function Header() {
   return (
-    <header>
-      <div>
+    <header className={styles.headerContainer}>
+      <div className={styles.headerContent}>
         <Image
-          src="images/logo.png"
+          src="/images/logo.png"
           alt="CezarModz logo"
-          width={50}
+          width={80}
           height={50}
         />
-        <nav>
+        <nav className={styles.headerNav}>
           <ul>
             <li>
-              <a href="/">Início</a>
+              <a href="/" className={`${styles.active}`}>
+                Início
+              </a>
             </li>
             <li>
               <a href="/">Sorteios</a>
