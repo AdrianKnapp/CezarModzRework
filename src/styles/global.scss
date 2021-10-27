@@ -54,5 +54,20 @@ a {
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.slick-dots {
+  // position: relative !important;
+  bottom: -35px !important;
+
+  li.slick-active button:before {
+    color: var(--white-900) !important;
+  }
+
+  button::before {
+    transition: all .2s;
+    color: var(--white-900) !important;
+  }
 }

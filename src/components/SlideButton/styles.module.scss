@@ -1,0 +1,19 @@
+.SlideButton {
+  position: absolute;
+  top: 50%;
+
+  background: transparent;
+  border: 0;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(.5);
+  }
+}
+
+.arrowIcon {
+
+  font-size: 30px;
+  color: var(--white-900);
+}

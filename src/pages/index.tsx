@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import Button from '../components/Button';
+import FeedbackSlide from '../components/FeedbackSlide';
 import PrimaryBannerSlide from '../components/PrimaryBannerSlide';
 
 import api from '../services/api';
@@ -34,13 +35,16 @@ export default function Home({ types }: HomeProps) {
           <h1> Produtos </h1>
           <p> Contas e serviços para PS4 e XBOX </p>
           {types.map((type) => (
-            <Link href="/">
+            <Link key={type.type} href="/">
               <a>
                 <Button text={type.type} />
               </a>
             </Link>
           ))}
         </main>
+      </section>
+      <section className="container">
+        <FeedbackSlide />
       </section>
     </>
   );

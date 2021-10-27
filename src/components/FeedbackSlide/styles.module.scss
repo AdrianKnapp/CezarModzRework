@@ -1,0 +1,84 @@
+@import '../../styles/globalClasses';
+
+.bannerContainer {
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+
+  h2 {
+    color: var(--white-900);
+    font-weight: 900;
+    margin: 0 auto;
+    width: min-content
+  }
+}
+
+.feedbackContainer {
+  @extend .boxStyle;
+
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
+
+  header {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    text-align: left;
+
+    .userProfileImageBox {
+      position: relative;
+
+      overflow: hidden;
+      border-radius: 100px;
+      width: 35%;
+      height: 100%;
+    }
+
+    .profileTitle {
+      width: 100%;
+      height: 100%;
+      margin-left: 20px;
+
+      h3 {
+        color: var(--white-900);
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+      h6 {
+        color: var(--white-500);
+        font-size: 1rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .feedbackText {
+    p {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--white-500);
+    }
+  }
+
+  .starsGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+
+    .star {
+      color: var(--white-900);
+      margin: 2px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .bannerContainer {
+    width: 80%;
+  }
+}
