@@ -57,6 +57,7 @@ export default function PrimaryBannerSlide({
             layout="responsive"
             className={styles.bannerImage}
             loader={ImageLoader}
+            unoptimized
           />
         ))}
       </Slider>

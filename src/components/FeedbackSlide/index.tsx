@@ -75,6 +75,7 @@ export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
                   layout="fill"
                   loader={ImageLoader}
                   className={styles.userProfileImage}
+                  unoptimized
                 />
               </div>
               <div className={styles.profileTitle}>
