@@ -4,17 +4,39 @@ import Slider from 'react-slick';
 
 import { AiFillStar } from 'react-icons/ai/';
 import SlideButton from '../SlideButton';
-
 import styles from './styles.module.scss';
 
-export default function FeedbackSlide() {
+type ImageProps = {
+  formats: {
+    thumbnail: {
+      url: string;
+    };
+  };
+};
+
+type Feedback = {
+  id: number;
+  name: string;
+  feedback: string;
+  image: ImageProps;
+};
+
+type FeedbackSlideProps = {
+  feedback: Feedback[];
+};
+
+type ImageLoaderProps = {
+  src: string;
+};
+
+export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: feedback.length >= 3 ? 3 : 1,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
     nextArrow: <SlideButton side="right" />,
@@ -34,130 +56,45 @@ export default function FeedbackSlide() {
       },
     ],
   };
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const ImageLoader = ({ src }: ImageLoaderProps) => src;
+
   return (
     <div className={styles.bannerContainer}>
       <h2>Depoimentos</h2>
       <Slider {...sliderSettings}>
-        <div className={styles.feedbackContainer}>
-          <header>
-            <div className={styles.userProfileImageBox}>
-              <Image
-                src="/images/profile.jpg"
-                alt="feedback-1"
-                layout="fill"
-                objectFit="cover"
-              />
+        {feedback.map((item) => (
+          <div key={item.id} className={styles.feedbackContainer}>
+            <header>
+              <div className={styles.userProfileImageBox}>
+                <Image
+                  src={apiUrl + item.image.formats.thumbnail.url}
+                  alt="feedback-1"
+                  layout="fill"
+                  objectFit="cover"
+                  loader={ImageLoader}
+                  unoptimized
+                />
+              </div>
+              <div className={styles.profileTitle}>
+                <h3>{item.name}</h3>
+                <h6>Cliente</h6>
+              </div>
+            </header>
+            <div className={styles.feedbackText}>
+              <p>{item.feedback}</p>
             </div>
-            <div className={styles.profileTitle}>
-              <h3>Fulando Ciclano</h3>
-              <h6>Cliente</h6>
+            <div className={styles.starsGroup}>
+              <AiFillStar className={styles.star} />
+              <AiFillStar className={styles.star} />
+              <AiFillStar className={styles.star} />
+              <AiFillStar className={styles.star} />
+              <AiFillStar className={styles.star} />
             </div>
-          </header>
-          <div className={styles.feedbackText}>
-            <p>
-              If you use this site regularly and would like to help keep the
-              site on the Internet, please consider donating a small sum to help
-              pay for the hosting and bandwidth bill.
-            </p>
           </div>
-          <div className={styles.starsGroup}>
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-          </div>
-        </div>
-        <div className={styles.feedbackContainer}>
-          <header>
-            <div className={styles.userProfileImageBox}>
-              <Image
-                src="/images/profile.jpg"
-                alt="feedback-1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className={styles.profileTitle}>
-              <h3>Fulando Ciclano</h3>
-              <h6>Cliente</h6>
-            </div>
-          </header>
-          <div className={styles.feedbackText}>
-            <p>
-              If you use this site regularly and would like to help keep the
-              site on the Internet, please consider donating a small sum to help
-              pay for the hosting and bandwidth bill.
-            </p>
-          </div>
-          <div className={styles.starsGroup}>
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-          </div>
-        </div>
-        <div className={styles.feedbackContainer}>
-          <header>
-            <div className={styles.userProfileImageBox}>
-              <Image
-                src="/images/profile.jpg"
-                alt="feedback-1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className={styles.profileTitle}>
-              <h3>Fulando Ciclano</h3>
-              <h6>Cliente</h6>
-            </div>
-          </header>
-          <div className={styles.feedbackText}>
-            <p>
-              If you use this site regularly and would like to help keep the
-              site on the Internet, please consider donating a small sum to help
-              pay for the hosting and bandwidth bill.
-            </p>
-          </div>
-          <div className={styles.starsGroup}>
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-          </div>
-        </div>
-        <div className={styles.feedbackContainer}>
-          <header>
-            <div className={styles.userProfileImageBox}>
-              <Image
-                src="/images/profile.jpg"
-                alt="feedback-1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className={styles.profileTitle}>
-              <h3>Fulando Ciclano</h3>
-              <h6>Cliente</h6>
-            </div>
-          </header>
-          <div className={styles.feedbackText}>
-            <p>
-              If you use this site regularly and would like to help keep the
-              site on the Internet, please consider donating a small sum to help
-              pay for the hosting and bandwidth bill.
-            </p>
-          </div>
-          <div className={styles.starsGroup}>
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-            <AiFillStar className={styles.star} />
-          </div>
-        </div>
+        ))}
       </Slider>
     </div>
   );

@@ -11,15 +11,29 @@ import api from '../services/api';
 import styles from './home.module.scss';
 
 type Type = {
-  id: number;
   type: string;
 };
 
-type HomeProps = {
-  types: Type[];
+type ImageProps = {
+  formats: {
+    thumbnail: {
+      url: string;
+    };
+  };
 };
 
-export default function Home({ types }: HomeProps) {
+type Feedback = {
+  id: number;
+  name: string;
+  feedback: string;
+  image: ImageProps[];
+};
+type HomeProps = {
+  types: Type[];
+  feedback: Feedback[];
+};
+
+export default function Home({ types, feedback }: HomeProps) {
   return (
     <>
       <Head>
@@ -44,18 +58,20 @@ export default function Home({ types }: HomeProps) {
         </main>
       </section>
       <section className="container">
-        <FeedbackSlide />
+        <FeedbackSlide feedback={feedback} />
       </section>
     </>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await api.get('/tipos');
+  const types = await api.get('/tipos');
+  const feedback = await api.get('/depoimentos');
 
   return {
     props: {
-      types: response.data,
+      types: types.data,
+      feedback: feedback.data,
     },
     revalidate: 60 * 60 * 24,
   };

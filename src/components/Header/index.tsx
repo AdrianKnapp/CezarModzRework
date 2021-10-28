@@ -8,8 +8,8 @@ export default function Header() {
         <Image
           src="/images/logo.png"
           alt="CezarModz logo"
-          width={80}
-          height={50}
+          width={60}
+          height={60}
         />
         <nav className={styles.headerNav}>
           <ul>
