@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Button from '../components/Button';
 import FeedbackSlide from '../components/FeedbackSlide';
+import Footer from '../components/Footer';
 import PrimaryBannerSlide from '../components/PrimaryBannerSlide';
 
 import api from '../services/api';
@@ -74,24 +75,7 @@ export default function Home({ types, feedback, banners }: HomeProps) {
       <section className="container">
         <FeedbackSlide feedback={feedback} />
       </section>
-      <footer className={`${styles.footerContainer}`}>
-        <div className={styles.footerContent}>
-          <div className={styles.left}>
-            <h2>Contato via E-Mail</h2>
-            <a href="mailto:contato@cezarmodz.com.br">Contato comercial</a>
-            <a href="mailto:suporte@cezarmodz.com.br">Suporte ao cliente</a>
-          </div>
-          <div className={styles.right}>
-            <h2>Redes Sociais</h2>
-            <a href="mailto:contato@cezarmodz.com.br">Instagram</a>
-            <a href="mailto:suporte@cezarmodz.com.br">facebook</a>
-          </div>
-        </div>
-        <div className={styles.footerPolicity}>
-          <p>Todos os direitos reservados</p>
-          <a href="">Desenvolvedor</a>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

@@ -48,6 +48,7 @@ export default function PrimaryBannerSlide({
       <Slider {...sliderSettings}>
         {banners.map((banner) => (
           <Image
+            key={banner.title}
             src={apiUrl + banner.banners.formats.medium.url}
             alt={banner.title}
             width={1060}
