@@ -4,7 +4,29 @@ import Slider from 'react-slick';
 
 import styles from './styles.module.scss';
 
-export default function PrimaryBannerSlide() {
+type Banner = {
+  id: number;
+  title: string;
+  banners: {
+    formats: {
+      medium: {
+        url: string;
+      };
+    };
+  };
+};
+
+type PrimaryBannerSlideProps = {
+  banners: Banner[];
+};
+
+type ImageLoaderProps = {
+  src: string;
+};
+
+export default function PrimaryBannerSlide({
+  banners,
+}: PrimaryBannerSlideProps) {
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -18,27 +40,24 @@ export default function PrimaryBannerSlide() {
     pauseOnHover: true,
   };
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const ImageLoader = ({ src }: ImageLoaderProps) => src;
+
   return (
     <div className={styles.bannerContainer}>
       <Slider {...sliderSettings}>
-        <Image
-          src="/images/banner1.png"
-          alt="Banner"
-          width={1060}
-          height={335}
-          quality={65}
-          layout="responsive"
-          className={styles.bannerImage}
-        />
-        <Image
-          src="/images/banner2.png"
-          alt="Banner"
-          width={1060}
-          height={335}
-          quality={65}
-          layout="responsive"
-          className={styles.bannerImage}
-        />
+        {banners.map((banner) => (
+          <Image
+            src={apiUrl + banner.banners.formats.medium.url}
+            alt={banner.title}
+            width={1060}
+            height={335}
+            quality={65}
+            layout="responsive"
+            className={styles.bannerImage}
+            loader={ImageLoader}
+          />
+        ))}
       </Slider>
     </div>
   );

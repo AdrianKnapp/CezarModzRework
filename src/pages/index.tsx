@@ -29,12 +29,25 @@ type Feedback = {
   image: ImageProps;
 };
 
+type Banner = {
+  id: number;
+  title: string;
+  banners: {
+    formats: {
+      medium: {
+        url: string;
+      };
+    };
+  };
+};
+
 type HomeProps = {
   types: Type[];
   feedback: Feedback[];
+  banners: Banner[];
 };
 
-export default function Home({ types, feedback }: HomeProps) {
+export default function Home({ types, feedback, banners }: HomeProps) {
   return (
     <>
       <Head>
@@ -43,7 +56,7 @@ export default function Home({ types, feedback }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`container ${styles.bannerContainer}`}>
-        <PrimaryBannerSlide />
+        <PrimaryBannerSlide banners={banners} />
       </div>
       <section className="container">
         <main className={`${styles.choseProductBox}`}>
@@ -86,11 +99,13 @@ export default function Home({ types, feedback }: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const types = await api.get('/tipos');
   const feedback = await api.get('/depoimentos');
+  const banners = await api.get('/banners');
 
   return {
     props: {
       types: types.data,
       feedback: feedback.data,
+      banners: banners.data,
     },
     revalidate: 60 * 60 * 24,
   };
