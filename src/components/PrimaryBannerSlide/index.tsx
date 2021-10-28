@@ -28,6 +28,7 @@ export default function PrimaryBannerSlide() {
           height={335}
           quality={65}
           layout="responsive"
+          className={styles.bannerImage}
         />
         <Image
           src="/images/banner2.png"
@@ -36,6 +37,7 @@ export default function PrimaryBannerSlide() {
           height={335}
           quality={65}
           layout="responsive"
+          className={styles.bannerImage}
         />
       </Slider>
     </div>

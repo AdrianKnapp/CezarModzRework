@@ -69,3 +69,15 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .headerNav {
+    ul {
+      li {
+        a {
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+}

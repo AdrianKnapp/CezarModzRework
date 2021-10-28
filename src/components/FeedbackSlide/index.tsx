@@ -37,7 +37,7 @@ export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
     slidesToShow: feedback.length >= 3 ? 3 : 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 8000,
     pauseOnHover: true,
     nextArrow: <SlideButton side="right" />,
     prevArrow: <SlideButton side="left" />,
@@ -73,9 +73,8 @@ export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
                   src={apiUrl + item.image.formats.thumbnail.url}
                   alt="feedback-1"
                   layout="fill"
-                  objectFit="cover"
                   loader={ImageLoader}
-                  unoptimized
+                  className={styles.userProfileImage}
                 />
               </div>
               <div className={styles.profileTitle}>

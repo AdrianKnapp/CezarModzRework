@@ -24,3 +24,92 @@
     }
   }
 }
+
+.footerContainer {
+  @extend .boxStyle;
+
+  margin-top: 50px;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid var(--gray-300);
+
+  .footerContent {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+
+    h2 {
+      color: var(--white-900);
+      font-weight: 700;
+
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 30%;
+        height: 2px;
+        background: var(--white-900);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    a {
+      color: var(--white-500);
+      transition: text-decoration 0.2s;
+      margin-top: 20px;
+
+      & + a {
+        margin-top: 10px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.footerPolicity {
+  width: 100%;
+  border-top: 1px solid var(--gray-300);
+  display: flex;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    color: var(--white-500);
+    transition: 0.2s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .footerContent {
+    flex-direction: column;
+
+    .left {
+      margin-bottom: 1.25rem;
+    }
+  }
+}

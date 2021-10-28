@@ -31,8 +31,6 @@ body {
 
   color: var(--white-500);
   font-family: 'Poppins', sans-serif;
-
-  padding-bottom: 100px;
 }
 
 body, input, textarea, select, button {
@@ -70,4 +68,22 @@ a {
     transition: all .2s;
     color: var(--white-900) !important;
   }
+}
+
+.slick-slide {
+  padding: 0 5px;
+  text-align:center;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--gray-900);/* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--gray-300);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
 }
