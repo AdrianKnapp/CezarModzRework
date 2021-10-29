@@ -47,18 +47,20 @@ export default function PrimaryBannerSlide({
     <div className={styles.bannerContainer}>
       <Slider {...sliderSettings}>
         {banners.map((banner) => (
-          <Image
-            key={banner.title}
-            src={apiUrl + banner.banners.formats.medium.url}
-            alt={banner.title}
-            width={1060}
-            height={335}
-            quality={65}
-            layout="responsive"
-            className={styles.bannerImage}
-            loader={ImageLoader}
-            unoptimized
-          />
+          <div key={banner.id}>
+            <Image
+              key={banner.title}
+              src={apiUrl + banner.banners.formats.medium.url}
+              alt={banner.title}
+              width={1060}
+              height={335}
+              quality={65}
+              layout="responsive"
+              className={styles.bannerImage}
+              loader={ImageLoader}
+              unoptimized
+            />
+          </div>
         ))}
       </Slider>
     </div>

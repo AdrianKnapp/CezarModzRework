@@ -7,15 +7,19 @@ interface SlideButtonProps extends CustomArrowProps {
   side: 'left' | 'right';
 }
 
-export default function SlideButton(props: SlideButtonProps) {
-  const { style, onClick, side } = props;
+export default function SlideButton({
+  style,
+  onClick,
+  side,
+}: SlideButtonProps) {
+  const rotate = side === 'left' ? 'rotate(180deg)' : '0';
 
   return (
     <button
       className={styles.SlideButton}
       style={{
         ...style,
-        transform: side === 'left' ? 'rotate(180deg);' : '',
+        transform: rotate,
         left: side === 'left' ? '-40px' : '',
         right: side === 'right' ? '-40px' : '',
       }}
