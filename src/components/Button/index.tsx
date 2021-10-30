@@ -11,15 +11,19 @@ type ButtonProps = {
   text?: string;
   bgcolor?: string;
   image?: ImageObjectProps;
+  border?: string;
+  onClick?: () => void;
 };
 
-const Button = ({ text, bgcolor, image }: ButtonProps) => (
+const Button = ({ text, bgcolor, image, onClick, border }: ButtonProps) => (
   <button
     type="button"
     style={{
       backgroundColor: bgcolor,
+      border,
     }}
     className={styles.button}
+    onClick={onClick}
   >
     {image ? (
       <img
@@ -37,6 +41,8 @@ Button.defaultProps = {
   text: 'Ver mais',
   bgcolor: '#FF8906',
   image: false,
+  border: '0',
+  onClick: () => null,
 };
 
 export default Button;

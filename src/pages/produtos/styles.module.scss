@@ -1,0 +1,51 @@
+@import '../../styles/globalClasses';
+
+.plataformsContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    @extend .titleStyle;
+
+    font-size: 1.8rem;
+    font-weight: 900;
+  }
+}
+
+
+.plataformsContent {
+  @extend .boxStyle;
+
+  width: 100%;
+  max-width: 400px;
+
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    @extend .titleStyle;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+
+    button {
+      & + button {
+        margin-top: 20px;
+      }
+    }
+  }
+}

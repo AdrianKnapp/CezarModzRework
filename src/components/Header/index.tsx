@@ -1,4 +1,7 @@
 import Image from 'next/image';
+
+import ActiveLink from '../ActiveLink';
+
 import styles from './styles.module.scss';
 
 export default function Header() {
@@ -14,15 +17,27 @@ export default function Header() {
         <nav className={styles.headerNav}>
           <ul>
             <li>
-              <a href="/" className={`${styles.active}`}>
-                Início
-              </a>
+              <ActiveLink activeClassName={styles.active} href="/" prefetch>
+                <a>Início</a>
+              </ActiveLink>
             </li>
             <li>
-              <a href="/">Sorteios</a>
+              <ActiveLink
+                activeClassName={styles.active}
+                href="/sorteios"
+                prefetch
+              >
+                <a>Sorteios</a>
+              </ActiveLink>
             </li>
             <li>
-              <a href="/">Sobre nós</a>
+              <ActiveLink
+                activeClassName={styles.active}
+                href="/sobrenos"
+                prefetch
+              >
+                <a>Sobre nós</a>
+              </ActiveLink>
             </li>
           </ul>
         </nav>

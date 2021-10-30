@@ -49,6 +49,8 @@ type HomeProps = {
 };
 
 export default function Home({ types, feedback, banners }: HomeProps) {
+  const productsUrl = '/produtos?tipo=';
+
   return (
     <>
       <Head>
@@ -64,7 +66,7 @@ export default function Home({ types, feedback, banners }: HomeProps) {
           <h1> Produtos </h1>
           <p> Contas e serviços para PS4 e XBOX </p>
           {types.map((type) => (
-            <Link key={type.type} href="/">
+            <Link key={type.type} href={`${productsUrl}${type.type}`}>
               <a>
                 <Button text={type.type} />
               </a>
