@@ -15,7 +15,7 @@ import 'slick-carousel/slick/slick-theme.css';
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     AOS.init({
-      once: true,
+      // once: true,
     });
   }, []);
 

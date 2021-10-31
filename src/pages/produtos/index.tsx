@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 
@@ -8,7 +9,7 @@ import api from '../../services/api';
 
 import Button from '../../components/Button';
 
-type Image = {
+type ProductImage = {
   id: number;
   formats: {
     small: {
@@ -20,14 +21,21 @@ type Image = {
 type Produto = {
   id: number;
   title: string;
-  images: Image[];
+  images: ProductImage[];
+  plataforma: {
+    id: number;
+    plataform;
+  };
+  tipo: {
+    id: number;
+    type: string;
+  };
 };
 
 type Plataform = {
   id: number;
   plataform: string;
   UID: string;
-  produtos: Produto[];
   logo: {
     url: string;
   };
@@ -36,23 +44,45 @@ type Plataform = {
 
 type ProductsProps = {
   plataforms: Plataform[];
+  products: Produto[];
 };
 
-export default function Products({ plataforms }: ProductsProps) {
+type ImageLoaderProps = {
+  src: string;
+};
+
+export default function Products({ plataforms, products }: ProductsProps) {
   const router = useRouter();
 
-  function selectPlataform() {
-    if (router.query.plataforma) {
-      console.log('existe plataforma');
-    } else {
+  const chosePlataform = router.query.plataforma;
+  const choseType = router.query.tipo;
+
+  console.log(router.query);
+
+  console.log(chosePlataform, choseType);
+
+  let productsByPlataform = [];
+
+  if (chosePlataform) {
+    productsByPlataform = products.filter(
+      ({ plataforma, tipo }) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        plataforma.plataform === chosePlataform && tipo.type === choseType,
+    );
+  }
+
+  function selectPlataform(plataformId) {
+    if (!chosePlataform) {
       router.push({
         pathname: router.pathname,
-        query: { ...router.query, plataforma: 'XBOX' },
+        query: { ...router.query, plataforma: plataformId },
       });
     }
   }
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return (
     <>
@@ -61,9 +91,49 @@ export default function Products({ plataforms }: ProductsProps) {
       </Head>
 
       {router.query.plataforma ? (
-        <section>
-          <h1> Produtos aqui </h1>
-        </section>
+        <main className="container" data-aos="fade-right">
+          <header className={styles.filterContainer}>
+            <div className={styles.filterPlataformImageContainer}>
+              <Image
+                src={apiUrl + plataforms[0].logo.url}
+                alt="feedback-1"
+                layout="fill"
+                loader={ImageLoader}
+                className={styles.filterPlataformImage}
+                unoptimized
+              />
+            </div>
+            <div className={styles.filterButton}>
+              <Image
+                src="/images/filter.svg"
+                alt="feedback-1"
+                layout="fill"
+                loader={ImageLoader}
+                className={styles.filterIcon}
+                unoptimized
+              />
+            </div>
+          </header>
+          <section className={styles.productsContainer}>
+            {productsByPlataform.length ? (
+              productsByPlataform.map((product) => (
+                <div key={product.id} className={styles.boxContainer}>
+                  <header>
+                    <h3>conta</h3>
+                  </header>
+                  <div className={styles.productImage}>IMAGE</div>
+                  <h4>
+                    <span>R$</span>
+                    100
+                  </h4>
+                  <h2>GOLD</h2>
+                </div>
+              ))
+            ) : (
+              <p> Não há produtos </p>
+            )}
+          </section>
+        </main>
       ) : (
         <section
           className={`container ${styles.plataformsContainer}`}
@@ -83,7 +153,7 @@ export default function Products({ plataforms }: ProductsProps) {
                 return (
                   <Button
                     key={plataform.id}
-                    onClick={selectPlataform}
+                    onClick={() => selectPlataform(plataform.plataform)}
                     bgcolor={plataform.color}
                     image={PlataformImage}
                     border="2px solid var(--white-900)"
@@ -100,9 +170,13 @@ export default function Products({ plataforms }: ProductsProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   let plataforms;
+  let products;
 
   try {
-    plataforms = await api.get('/plataformas');
+    const getPlataforms = await api.get('/plataformas');
+    const getProducts = await api.get('/produtos');
+    plataforms = getPlataforms.data;
+    products = getProducts.data;
   } catch (err) {
     plataforms = {
       status: 'error',
@@ -111,7 +185,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      plataforms: plataforms?.data,
+      plataforms,
+      products,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };

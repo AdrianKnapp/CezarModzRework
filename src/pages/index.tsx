@@ -12,6 +12,7 @@ import api from '../services/api';
 import styles from './home.module.scss';
 
 type Type = {
+  id: number;
   type: string;
 };
 

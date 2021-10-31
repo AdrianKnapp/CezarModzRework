@@ -12,30 +12,22 @@ export default function Header() {
           src="/images/logo.png"
           alt="CezarModz logo"
           width={60}
-          height={60}
+          height={50}
         />
         <nav className={styles.headerNav}>
           <ul>
             <li>
-              <ActiveLink activeClassName={styles.active} href="/" prefetch>
+              <ActiveLink activeClassName={styles.active} href="/">
                 <a>Início</a>
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink
-                activeClassName={styles.active}
-                href="/sorteios"
-                prefetch
-              >
+              <ActiveLink activeClassName={styles.active} href="/sorteios">
                 <a>Sorteios</a>
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink
-                activeClassName={styles.active}
-                href="/sobrenos"
-                prefetch
-              >
+              <ActiveLink activeClassName={styles.active} href="/sobrenos">
                 <a>Sobre nós</a>
               </ActiveLink>
             </li>
