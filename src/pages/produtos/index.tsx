@@ -56,11 +56,6 @@ export default function Products({ plataforms, products }: ProductsProps) {
 
   const chosePlataform = router.query.plataforma;
   const choseType = router.query.tipo;
-
-  console.log(router.query);
-
-  console.log(chosePlataform, choseType);
-
   let productsByPlataform = [];
 
   if (chosePlataform) {
