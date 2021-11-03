@@ -15,7 +15,7 @@ export default function Footer() {
           <a href="mailto:suporte@cezarmodz.com.br">facebook</a>
         </div>
       </div>
-      <div className={styles.footerPolicity}>
+      <div className={`container ${styles.footerPolicity}`}>
         <p>Todos os direitos reservados</p>
         <a href="">Desenvolvedor</a>
       </div>

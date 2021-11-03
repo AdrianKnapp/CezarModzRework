@@ -11,8 +11,12 @@ import Button from '../../components/Button';
 
 type ProductImage = {
   id: number;
+  name: string;
   formats: {
     small: {
+      url: string;
+    };
+    thumbnail: {
       url: string;
     };
   };
@@ -30,6 +34,7 @@ type Produto = {
     id: number;
     type: string;
   };
+  price: string;
 };
 
 type Plataform = {
@@ -57,12 +62,17 @@ export default function Products({ plataforms, products }: ProductsProps) {
   const chosePlataform = router.query.plataforma;
   const choseType = router.query.tipo;
   let productsByPlataform = [];
+  let plataformChoseData;
 
   if (chosePlataform) {
     productsByPlataform = products.filter(
       ({ plataforma, tipo }) =>
         // eslint-disable-next-line implicit-arrow-linebreak
         plataforma.plataform === chosePlataform && tipo.type === choseType,
+    );
+
+    plataformChoseData = plataforms.filter(
+      ({ plataform }) => plataform === chosePlataform,
     );
   }
 
@@ -90,8 +100,8 @@ export default function Products({ plataforms, products }: ProductsProps) {
           <header className={styles.filterContainer}>
             <div className={styles.filterPlataformImageContainer}>
               <Image
-                src={apiUrl + plataforms[0].logo.url}
-                alt="feedback-1"
+                src={apiUrl + plataformChoseData[0].logo.url}
+                alt="Plataforma logo"
                 layout="fill"
                 loader={ImageLoader}
                 className={styles.filterPlataformImage}
@@ -111,15 +121,26 @@ export default function Products({ plataforms, products }: ProductsProps) {
           </header>
           <section className={styles.productsContainer}>
             {productsByPlataform.length ? (
-              productsByPlataform.map((product) => (
+              productsByPlataform.map((product: Produto) => (
                 <div key={product.id} className={styles.boxContainer}>
                   <header>
-                    <h3>conta</h3>
+                    <h3>{product.tipo.type}</h3>
                   </header>
-                  <div className={styles.productImage}>IMAGE</div>
+                  <div className={styles.productImage}>
+                    <Image
+                      loader={ImageLoader}
+                      src={apiUrl + product.images[0].formats.thumbnail.url}
+                      alt={product.images[0].name}
+                      layout="responsive"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
                   <h4>
-                    <span>R$</span>
-                    100
+                    {new Intl.NumberFormat('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    }).format(+product.price)}
                   </h4>
                   <h2>GOLD</h2>
                 </div>

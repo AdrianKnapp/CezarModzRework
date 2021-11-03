@@ -1,6 +1,10 @@
 @import '../../styles/globalClasses';
 
 .footerContainer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   @extend .boxStyle;
 
   margin-top: 50px;
@@ -65,6 +69,7 @@
   border-top: 1px solid var(--gray-300);
   display: flex;
   margin-top: 1.25rem;
+  padding: 0;
   padding-top: .625rem;
 
   display: flex;

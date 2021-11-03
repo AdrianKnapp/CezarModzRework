@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import ActiveLink from '../ActiveLink';
 
@@ -8,12 +9,14 @@ export default function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={`container ${styles.headerContent}`}>
-        <Image
-          src="/images/logo.png"
-          alt="CezarModz logo"
-          width={60}
-          height={50}
-        />
+        <Link href="/">
+          <Image
+            src="/images/logo.png"
+            alt="CezarModz logo"
+            width={60}
+            height={50}
+          />
+        </Link>
         <nav className={styles.headerNav}>
           <ul>
             <li>

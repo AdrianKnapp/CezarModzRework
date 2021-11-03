@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 :root {
   --white-500: #A7A9BE;
   --white-900: #FFFFFE;
@@ -31,6 +35,11 @@ body {
 
   color: var(--white-500);
   font-family: 'Poppins', sans-serif;
+
+  // footer always on the bottom
+  position: relative;
+  padding-bottom: 17rem;
+  min-height: 100%;
 }
 
 body, input, textarea, select, button {

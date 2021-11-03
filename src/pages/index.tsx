@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import Button from '../components/Button';
 import FeedbackSlide from '../components/FeedbackSlide';
-import Footer from '../components/Footer';
 import PrimaryBannerSlide from '../components/PrimaryBannerSlide';
 
 import api from '../services/api';
@@ -81,7 +80,6 @@ export default function Home({ types, feedback, banners }: HomeProps) {
       <section className="container" data-aos="fade-right">
         <FeedbackSlide feedback={feedback} />
       </section>
-      <Footer />
     </>
   );
 }
