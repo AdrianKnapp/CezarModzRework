@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 import api from '../../services/api';
 
 import Button from '../../components/Button';
+import FilterButton from '../../components/FilterButton';
 
 type ProductImage = {
   id: number;
@@ -108,15 +109,8 @@ export default function Products({ plataforms, products }: ProductsProps) {
                 unoptimized
               />
             </div>
-            <div className={styles.filterButton}>
-              <Image
-                src="/images/filter.svg"
-                alt="feedback-1"
-                layout="fill"
-                loader={ImageLoader}
-                className={styles.filterIcon}
-                unoptimized
-              />
+            <div className={styles.filterButtonContainer}>
+              <FilterButton />
             </div>
           </header>
           <section className={styles.productsContainer}>
