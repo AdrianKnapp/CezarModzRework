@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 
+import { useState } from 'react';
 import styles from './styles.module.scss';
 
 import api from '../../services/api';
@@ -59,6 +60,8 @@ type ImageLoaderProps = {
 
 export default function Products({ plataforms, products }: ProductsProps) {
   const router = useRouter();
+  const [filterIsOpen, setFilterIsOpen] = useState(false);
+  const [productsList, setProductsList] = useState([]);
 
   const chosePlataform = router.query.plataforma;
   const choseType = router.query.tipo;
@@ -72,9 +75,30 @@ export default function Products({ plataforms, products }: ProductsProps) {
         plataforma.plataform === chosePlataform && tipo.type === choseType,
     );
 
+    if (!productsList.length) setProductsList(productsByPlataform);
+
     plataformChoseData = plataforms.filter(
       ({ plataform }) => plataform === chosePlataform,
     );
+  }
+
+  function applyFilter(filtersObject) {
+    const { order } = filtersObject;
+    const orderedProducts = [...productsByPlataform];
+    switch (order) {
+      case 'ASC':
+        orderedProducts.sort(
+          (a, b) => parseFloat(a.price) - parseFloat(b.price),
+        );
+        break;
+      case 'DESC':
+        orderedProducts.sort(
+          (a, b) => parseFloat(b.price) - parseFloat(a.price),
+        );
+        break;
+      default:
+    }
+    setProductsList(orderedProducts);
   }
 
   function selectPlataform(plataformId) {
@@ -109,13 +133,23 @@ export default function Products({ plataforms, products }: ProductsProps) {
                 unoptimized
               />
             </div>
-            <div className={styles.filterButtonContainer}>
-              <FilterButton />
+            <div
+              className={styles.filterButtonContainer}
+              onClick={() => setFilterIsOpen(!filterIsOpen)}
+              onKeyPress={() => setFilterIsOpen(!filterIsOpen)}
+              tabIndex={0}
+              role="button"
+            >
+              <FilterButton
+                handleFilter={applyFilter}
+                filterState={filterIsOpen}
+                handleFilterState={setFilterIsOpen}
+              />
             </div>
           </header>
           <section className={styles.productsContainer}>
-            {productsByPlataform.length ? (
-              productsByPlataform.map((product: Produto) => (
+            {productsList.length ? (
+              productsList.map((product: Produto) => (
                 <div key={product.id} className={styles.boxContainer}>
                   <header>
                     <h3>{product.tipo.type}</h3>
@@ -128,6 +162,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
                       layout="responsive"
                       width={100}
                       height={100}
+                      unoptimized
                     />
                   </div>
                   <h4>

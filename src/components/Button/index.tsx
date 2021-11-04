@@ -13,11 +13,20 @@ type ButtonProps = {
   image?: ImageObjectProps;
   border?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 };
 
-const Button = ({ text, bgcolor, image, onClick, border }: ButtonProps) => (
+const Button = ({
+  text,
+  bgcolor,
+  image,
+  onClick,
+  border,
+  type,
+}: ButtonProps) => (
   <button
-    type="button"
+    // eslint-disable-next-line react/button-has-type
+    type={type}
     style={{
       backgroundColor: bgcolor,
       border,
@@ -43,6 +52,7 @@ Button.defaultProps = {
   image: false,
   border: '0',
   onClick: () => null,
+  type: 'button',
 };
 
 export default Button;

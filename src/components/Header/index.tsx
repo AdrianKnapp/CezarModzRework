@@ -10,12 +10,14 @@ export default function Header() {
     <header className={styles.headerContainer}>
       <div className={`container ${styles.headerContent}`}>
         <Link href="/">
-          <Image
-            src="/images/logo.png"
-            alt="CezarModz logo"
-            width={60}
-            height={50}
-          />
+          <a>
+            <Image
+              src="/images/logo.png"
+              alt="CezarModz logo"
+              width={70}
+              height={70}
+            />
+          </a>
         </Link>
         <nav className={styles.headerNav}>
           <ul>
