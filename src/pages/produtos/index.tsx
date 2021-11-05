@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
-
+import Link from 'next/link';
 import { useState } from 'react';
 import styles from './styles.module.scss';
 
@@ -152,29 +152,33 @@ export default function Products({ plataforms, products }: ProductsProps) {
           <section className={styles.productsContainer}>
             {productsList.length ? (
               productsList.map((product: Produto) => (
-                <div key={product.id} className={styles.boxContainer}>
-                  <header>
-                    <h3>{product.tipo.type}</h3>
-                  </header>
-                  <div className={styles.productImage}>
-                    <Image
-                      loader={ImageLoader}
-                      src={apiUrl + product.images[0].formats.thumbnail.url}
-                      alt={product.images[0].name}
-                      layout="responsive"
-                      width={100}
-                      height={100}
-                      unoptimized
-                    />
-                  </div>
-                  <h4>
-                    {new Intl.NumberFormat('pt-BR', {
-                      style: 'currency',
-                      currency: 'BRL',
-                    }).format(+product.price)}
-                  </h4>
-                  <h2>GOLD</h2>
-                </div>
+                <Link href={`/produtos/${product.id}`}>
+                  <a>
+                    <div key={product.id} className={styles.boxContainer}>
+                      <header>
+                        <h3>{product.tipo.type}</h3>
+                      </header>
+                      <div className={styles.productImage}>
+                        <Image
+                          loader={ImageLoader}
+                          src={apiUrl + product.images[0].formats.thumbnail.url}
+                          alt={product.images[0].name}
+                          layout="responsive"
+                          width={100}
+                          height={100}
+                          unoptimized
+                        />
+                      </div>
+                      <h4>
+                        {new Intl.NumberFormat('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        }).format(+product.price)}
+                      </h4>
+                      <h2>{product.title}</h2>
+                    </div>
+                  </a>
+                </Link>
               ))
             ) : (
               <p> Não há produtos </p>

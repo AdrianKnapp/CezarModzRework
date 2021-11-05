@@ -1,87 +1,103 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+
+import FsLightbox from 'fslightbox-react';
+import ReactMarkdown from 'react-markdown';
+
+import { useState } from 'react';
+
 import Accordion from '../../components/Accordion';
 import Button from '../../components/Button';
-
 import styles from './product.module.scss';
+import api from '../../services/api';
 
 type ImageLoaderProps = {
   src: string;
 };
 
-export default function Product() {
+type ImageProps = {
+  url: string;
+  id: number;
+};
+
+type ProductProps = {
+  id: number;
+  title: string;
+  description: string;
+  images: ImageProps[];
+  logoPlataform: string;
+  plataform: string;
+  type: string;
+  price: string;
+  error: boolean;
+};
+
+type ProductComponentProps = {
+  product: ProductProps;
+};
+
+export default function Product({ product }: ProductComponentProps) {
+  const [activeImage, setActiveImage] = useState(0);
+  const [activeMiniature, setActiveMiniature] = useState(0);
+
+  const [fsLightboxIsOpen, setFsLightboxIsOpen] = useState(false);
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  function changeFocusImage(imageId) {
+    const imageIndex = product.images.findIndex((img) => img.id === imageId);
+    setActiveImage(imageIndex);
+    setActiveMiniature(imageId);
+
+    return imageId;
+  }
+
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return (
     <>
       <Head>
-        <title>Produto | CezarModz</title>
+        <title>{`${product.title} | CezarModz`}</title>
       </Head>
       <section className="container">
         <main className={styles.productContainer}>
           <div className={styles.productImagesContainer}>
             <div className={styles.secondaryImages}>
-              <div className={styles.miniature}>
-                <Image
-                  loader={ImageLoader}
-                  src="/images/product-image.jpeg"
-                  alt="Imagem do produto"
-                  layout="responsive"
-                  width={100}
-                  height={100}
-                  unoptimized
-                />
-              </div>
-              <div className={styles.miniature}>
-                <Image
-                  loader={ImageLoader}
-                  src="/images/product-image.jpeg"
-                  alt="Imagem do produto"
-                  layout="responsive"
-                  width={100}
-                  height={100}
-                  unoptimized
-                />
-              </div>
-              <div className={styles.miniature}>
-                <Image
-                  loader={ImageLoader}
-                  src="/images/product-image.jpeg"
-                  alt="Imagem do produto"
-                  layout="responsive"
-                  width={100}
-                  height={100}
-                  unoptimized
-                />
-              </div>
-              <div className={styles.miniature}>
-                <Image
-                  loader={ImageLoader}
-                  src="/images/product-image.jpeg"
-                  alt="Imagem do produto"
-                  layout="responsive"
-                  width={100}
-                  height={100}
-                  unoptimized
-                />
-              </div>
-              <div className={styles.miniature}>
-                <Image
-                  loader={ImageLoader}
-                  src="/images/product-image.jpeg"
-                  alt="Imagem do produto"
-                  layout="responsive"
-                  width={100}
-                  height={100}
-                  unoptimized
-                />
-              </div>
+              {product.images.map((image) => (
+                <div
+                  key={image.id}
+                  className={`${styles.miniature} ${
+                    activeMiniature === image.id ? styles.active : ''
+                  }`}
+                  onClick={() => changeFocusImage(image.id)}
+                  onMouseEnter={() => changeFocusImage(image.id)}
+                  onKeyPress={() => changeFocusImage(image.id)}
+                  tabIndex={0}
+                  role="button"
+                >
+                  <Image
+                    loader={ImageLoader}
+                    src={apiUrl + image.url}
+                    alt="Imagem do produto"
+                    layout="responsive"
+                    width={100}
+                    height={100}
+                    unoptimized
+                  />
+                </div>
+              ))}
             </div>
-            <div className={styles.primaryImage}>
+            <div
+              className={styles.primaryImage}
+              onClick={() => setFsLightboxIsOpen(!fsLightboxIsOpen)}
+              onKeyPress={() => setFsLightboxIsOpen(!fsLightboxIsOpen)}
+              tabIndex={0}
+              role="button"
+            >
               <Image
                 loader={ImageLoader}
-                src="/images/product-image.jpeg"
+                src={apiUrl + product.images[activeImage].url}
                 alt="Imagem do produto"
                 layout="responsive"
                 width={100}
@@ -96,30 +112,37 @@ export default function Product() {
                 <div className={styles.plataformImage}>
                   <Image
                     loader={ImageLoader}
-                    src="/images/xbox.svg"
+                    src={apiUrl + product.logoPlataform}
                     alt="Imagem do produto"
                     layout="fill"
                     unoptimized
                   />
                 </div>
-                <h3>conta</h3>
+                <h3>{product.type}</h3>
               </header>
-              <h1>PREMIUM</h1>
+              <h1>{product.title}</h1>
               <h3>
                 Plataforma:
-                <span>XBOX</span>
+                <span>{product.plataform}</span>
               </h3>
-              <h2>R$ 120</h2>
+              <h2>{product.price}</h2>
               <div className={styles.buttonContainer}>
                 <Button text="Comprar agora" />
               </div>
             </div>
           </div>
+          <FsLightbox
+            toggler={fsLightboxIsOpen}
+            sources={[...product.images.map((image) => apiUrl + image.url)]}
+            slide={activeImage + 1}
+          />
         </main>
       </section>
       <section className={`container ${styles.productDescription}`}>
-        <Accordion />
-        <Accordion />
+        <Accordion title="Benefícios">
+          <ReactMarkdown>{product.description}</ReactMarkdown>
+        </Accordion>
+        <Accordion title="Detalhes">Teste</Accordion>
       </section>
     </>
   );
@@ -138,10 +161,43 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
+  let product: ProductProps = {
+    id: 0,
+    title: '',
+    description: '',
+    images: [],
+    logoPlataform: '',
+    plataform: '',
+    type: '',
+    price: '',
+    error: true,
+  };
 
+  try {
+    const getProduct = await api.get(`/produtos?id=${slug}`);
+    const getProductData = getProduct.data[0];
+
+    product = {
+      id: getProductData.id,
+      title: getProductData.title,
+      description: getProductData.description,
+      plataform: getProductData.plataforma.plataform,
+      type: getProductData.tipo.type,
+      logoPlataform: getProductData.plataforma.logo.url,
+      price: new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(+getProductData.price),
+      images: getProductData.images,
+      error: false,
+    };
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
   return {
     props: {
-      slug,
+      product,
     },
     redirect: 60 * 30, // 30 minutes
   };

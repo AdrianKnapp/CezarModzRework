@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { ReactChild, useState } from 'react';
+
 import { FaAngleDown } from 'react-icons/fa';
+
 import styles from './styles.module.scss';
 
-export default function Accordion() {
+type AccordionProps = {
+  title: string;
+  children: ReactChild;
+};
+
+export default function Accordion({ title, children }: AccordionProps) {
   const [accordionIsOpen, setAccordionIsOpen] = useState(false);
 
   return (
@@ -14,16 +21,10 @@ export default function Accordion() {
         tabIndex={0}
         role="button"
       >
-        <span>DROPDOWN</span>
+        <span>{title}</span>
         <FaAngleDown className={styles.dropdownIcon} />
       </header>
-      <div className={styles.accordionContent}>
-        <p>
-          Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
-          voluptatibus maiores alias consequatur aut perferendis doloribus
-          asperiores repellat.
-        </p>
-      </div>
+      <div className={styles.accordionContent}>{children}</div>
     </div>
   );
 }
