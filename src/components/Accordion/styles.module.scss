@@ -1,0 +1,43 @@
+@import '../../styles/globalClasses';
+
+.accordionContainer {
+  width: 100%;
+  height: auto;
+
+  header {
+    @extend .boxStyle;
+
+    height: 60px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    .dropdownIcon {
+      transition: all .2s;
+    }
+
+    &.active {
+      color: var(--white-900);
+      border-color: var(--white-900);
+      border-radius: .3rem .3rem 0 0;
+
+      & + .accordionContent {
+        display: flex;
+      }
+      .dropdownIcon {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .accordionContent {
+    @extend .boxStyle;
+
+    display: none;
+    border-top: 0;
+    border-radius: 0 0 .3rem .3rem;
+  }
+}

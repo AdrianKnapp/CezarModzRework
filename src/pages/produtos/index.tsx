@@ -75,7 +75,9 @@ export default function Products({ plataforms, products }: ProductsProps) {
         plataforma.plataform === chosePlataform && tipo.type === choseType,
     );
 
-    if (!productsList.length) setProductsList(productsByPlataform);
+    if (!productsList.length) {
+      if (productsByPlataform.length) setProductsList(productsByPlataform);
+    }
 
     plataformChoseData = plataforms.filter(
       ({ plataform }) => plataform === chosePlataform,
