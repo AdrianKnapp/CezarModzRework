@@ -96,3 +96,9 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--gray-300);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
+
+@media (max-width: 600px) {
+  body {
+    padding-bottom: 26rem;
+  }
+}
