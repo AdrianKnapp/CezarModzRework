@@ -152,9 +152,9 @@ export default function Products({ plataforms, products }: ProductsProps) {
           <section className={styles.productsContainer}>
             {productsList.length ? (
               productsList.map((product: Produto) => (
-                <Link href={`/produtos/${product.id}`}>
+                <Link href={`/produtos/${product.id}`} key={product.id}>
                   <a>
-                    <div key={product.id} className={styles.boxContainer}>
+                    <div className={styles.boxContainer}>
                       <header>
                         <h3>{product.tipo.type}</h3>
                       </header>
