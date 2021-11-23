@@ -1,19 +1,32 @@
 .button {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: .6rem 1.25rem;
   border: 0;
   border-radius: 0.3rem;
   background-color: #fff;
-  color: var(--white-900);
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
   cursor: pointer;
   transition: filter 0.2s;
   min-width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .icon {
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--white-900);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  p:first-letter {
+    text-transform:capitalize;
+  }
 
   &:hover {
     filter: brightness(.8);

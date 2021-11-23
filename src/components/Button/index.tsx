@@ -14,6 +14,7 @@ type ButtonProps = {
   border?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  icon?: string;
 };
 
 const Button = ({
@@ -23,6 +24,7 @@ const Button = ({
   onClick,
   border,
   type,
+  icon,
 }: ButtonProps) => (
   <button
     // eslint-disable-next-line react/button-has-type
@@ -41,7 +43,10 @@ const Button = ({
         style={{ width: image.width, height: image.height }}
       />
     ) : (
-      text
+      <>
+        {icon ? <img src={icon} className={styles.icon} alt={icon} /> : null}
+        <p>{text}</p>
+      </>
     )}
   </button>
 );
@@ -53,6 +58,7 @@ Button.defaultProps = {
   border: '0',
   onClick: () => null,
   type: 'button',
+  icon: false,
 };
 
 export default Button;

@@ -10,9 +10,14 @@ import api from '../services/api';
 
 import styles from './home.module.scss';
 
+type IconProps = {
+  url: string;
+};
+
 type Type = {
   id: number;
   type: string;
+  icon: IconProps;
 };
 
 type ImageProps = {
@@ -51,6 +56,8 @@ type HomeProps = {
 export default function Home({ types, feedback, banners }: HomeProps) {
   const productsUrl = '/produtos?tipo=';
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   return (
     <>
       <Head>
@@ -67,14 +74,21 @@ export default function Home({ types, feedback, banners }: HomeProps) {
       <section className="container" data-aos="fade-right">
         <main className={`${styles.choseProductBox}`}>
           <h1> Produtos </h1>
-          <p> Contas e serviços para PS4 e XBOX </p>
-          {types.map((type) => (
-            <Link key={type.type} href={`${productsUrl}${type.type}`}>
-              <a>
-                <Button text={type.type} />
-              </a>
-            </Link>
-          ))}
+          <p className={styles.description}>
+            Contas e serviços para PS4 e XBOX
+          </p>
+          <div className={styles.buttonsContainer}>
+            {types.map((type) => (
+              <Link key={type.type} href={`${productsUrl}${type.type}`}>
+                <a>
+                  <Button
+                    icon={apiUrl + type.icon[0]?.url}
+                    text={`${type.type}s`}
+                  />
+                </a>
+              </Link>
+            ))}
+          </div>
         </main>
       </section>
       <section className="container" data-aos="fade-right">
