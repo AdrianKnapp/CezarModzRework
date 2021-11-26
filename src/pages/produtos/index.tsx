@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 
 import api from '../../services/api';
@@ -67,10 +67,6 @@ export default function Products({ plataforms, products }: ProductsProps) {
 
   const chosePlataform = router.query.plataforma;
   const choseType = router.query.tipo;
-
-  useEffect(() => {
-    console.log(router.query);
-  }, [router.query]);
 
   let productsByPlataform = [];
   let plataformChoseData;
