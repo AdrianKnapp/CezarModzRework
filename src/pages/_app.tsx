@@ -3,6 +3,7 @@ import AOS from 'aos';
 
 import { useEffect } from 'react';
 
+import Head from 'next/head';
 import Header from '../components/Header';
 
 import 'aos/dist/aos.css';
@@ -22,6 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <Header />
       <Component {...pageProps} />
       <Footer />

@@ -127,7 +127,12 @@ export default function Product({ product }: ProductComponentProps) {
               </h3>
               <h2>{product.price}</h2>
               <div className={styles.buttonContainer}>
-                <Button text="Comprar agora" />
+                <a
+                  href={`https://api.whatsapp.com/send?phone=551e+21&text=Ol%C3%A1%2C%20tenho%20interesse%20no%20produto%20${product.title}`}
+                  target="blank_"
+                >
+                  <Button text="Comprar agora" />
+                </a>
               </div>
             </div>
           </div>

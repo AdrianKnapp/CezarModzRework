@@ -27,11 +27,6 @@ export default function Header() {
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink activeClassName={styles.active} href="/sorteios">
-                <a>Sorteios</a>
-              </ActiveLink>
-            </li>
-            <li>
               <ActiveLink activeClassName={styles.active} href="/sobrenos">
                 <a>Sobre nós</a>
               </ActiveLink>

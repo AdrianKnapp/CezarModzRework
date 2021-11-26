@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import api from '../../services/api';
@@ -22,6 +22,7 @@ type ProductImage = {
       url: string;
     };
   };
+  url: string;
 };
 
 type Produto = {
@@ -60,11 +61,17 @@ type ImageLoaderProps = {
 
 export default function Products({ plataforms, products }: ProductsProps) {
   const router = useRouter();
+
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [productsList, setProductsList] = useState([]);
 
   const chosePlataform = router.query.plataforma;
   const choseType = router.query.tipo;
+
+  useEffect(() => {
+    console.log(router.query);
+  }, [router.query]);
+
   let productsByPlataform = [];
   let plataformChoseData;
 
@@ -113,7 +120,6 @@ export default function Products({ plataforms, products }: ProductsProps) {
   }
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return (
@@ -161,7 +167,13 @@ export default function Products({ plataforms, products }: ProductsProps) {
                       <div className={styles.productImage}>
                         <Image
                           loader={ImageLoader}
-                          src={apiUrl + product.images[0].formats.thumbnail.url}
+                          src={
+                            // eslint-disable-next-line operator-linebreak
+                            apiUrl +
+                            // eslint-disable-next-line operator-linebreak
+                            (product.images[0].formats?.thumbnail.url ||
+                              product.images[0].url)
+                          }
                           alt={product.images[0].name}
                           layout="responsive"
                           width={100}
@@ -181,7 +193,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
                 </Link>
               ))
             ) : (
-              <p> Não há produtos </p>
+              <p>Não há produtos.</p>
             )}
           </section>
         </main>
