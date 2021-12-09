@@ -155,7 +155,13 @@ export default function Product({ product }: ProductComponentProps) {
     </>
   ) : (
     <section className="container">
-      <h3>Loading...</h3>
+      <h3
+        style={{
+          margin: '0 auto',
+        }}
+      >
+        Carregando...
+      </h3>
     </section>
   );
 }
