@@ -158,6 +158,7 @@ export default function Product({ product }: ProductComponentProps) {
       <h3
         style={{
           margin: '0 auto',
+          width: 'min-content',
         }}
       >
         Carregando...
