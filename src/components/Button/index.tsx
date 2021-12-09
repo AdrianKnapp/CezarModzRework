@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './styles.module.scss';
 
 type ImageObjectProps = {
@@ -32,19 +33,26 @@ const Button = ({
     style={{
       backgroundColor: bgcolor,
       border,
+      minWidth: icon ? '160px' : '100px',
     }}
     className={styles.button}
     onClick={onClick}
   >
     {image ? (
-      <img
+      <Image
         src={image.src}
         alt={image.alt}
-        style={{ width: image.width, height: image.height }}
+        width={image.width}
+        height={image.height}
+        unoptimized
       />
     ) : (
       <>
-        {icon ? <img src={icon} className={styles.icon} alt={icon} /> : null}
+        {icon ? (
+          <div className={styles.icon}>
+            <Image src={icon} alt={icon} width={30} height={30} unoptimized />
+          </div>
+        ) : null}
         <p>{text}</p>
       </>
     )}

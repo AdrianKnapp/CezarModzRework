@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { useState } from 'react';
 
+import { useRouter } from 'next/router';
 import Accordion from '../../components/Accordion';
 import Button from '../../components/Button';
 import styles from './product.module.scss';
@@ -38,6 +39,8 @@ type ProductComponentProps = {
 };
 
 export default function Product({ product }: ProductComponentProps) {
+  const router = useRouter();
+
   const [activeImage, setActiveImage] = useState(0);
   const [activeMiniature, setActiveMiniature] = useState(0);
 
@@ -55,7 +58,7 @@ export default function Product({ product }: ProductComponentProps) {
 
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
-  return (
+  return !router.isFallback ? (
     <>
       <Head>
         <title>{`${product.title} | CezarModz`}</title>
@@ -150,22 +153,31 @@ export default function Product({ product }: ProductComponentProps) {
         <Accordion title="Detalhes">Teste</Accordion>
       </section>
     </>
+  ) : (
+    <section className="container">
+      <h3>Loading...</h3>
+    </section>
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [
-    {
-      params: {
-        slug: '',
-      },
+export const getStaticPaths: GetStaticPaths = async () => {
+  const getProductsSlug = await api.get('/produtos');
+
+  const productsIds = getProductsSlug.data.map((product) => ({
+    params: {
+      slug: String(product.id),
     },
-  ],
-  fallback: 'blocking',
-});
+  }));
+
+  return {
+    paths: productsIds,
+    fallback: true,
+  };
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
+
   let product: ProductProps = {
     id: 0,
     title: '',

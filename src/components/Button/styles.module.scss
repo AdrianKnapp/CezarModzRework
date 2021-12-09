@@ -6,14 +6,16 @@
   background-color: #fff;
   cursor: pointer;
   transition: filter 0.2s;
-  min-width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .icon {
+    position: relative;
     width: 30px;
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
   }
 
   p {

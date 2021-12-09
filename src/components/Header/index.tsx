@@ -12,7 +12,7 @@ export default function Header() {
         <Link href="/">
           <a>
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="CezarModz logo"
               width={70}
               height={70}
