@@ -109,6 +109,6 @@ export const getStaticProps: GetStaticProps = async () => {
       feedback: feedback.data,
       banners: banners.data,
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: 60 * 60, // 60 minutes
   };
 };
