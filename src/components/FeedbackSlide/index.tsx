@@ -57,8 +57,6 @@ export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
     ],
   };
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return (
@@ -70,7 +68,7 @@ export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
             <header>
               <div className={styles.userProfileImageBox}>
                 <Image
-                  src={apiUrl + item.image.formats.thumbnail.url}
+                  src={item.image.formats.thumbnail.url}
                   alt="feedback-1"
                   layout="fill"
                   loader={ImageLoader}

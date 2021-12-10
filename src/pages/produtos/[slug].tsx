@@ -46,8 +46,6 @@ export default function Product({ product }: ProductComponentProps) {
 
   const [fsLightboxIsOpen, setFsLightboxIsOpen] = useState(false);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   function changeFocusImage(imageId) {
     const imageIndex = product.images.findIndex((img) => img.id === imageId);
     setActiveImage(imageIndex);
@@ -81,7 +79,7 @@ export default function Product({ product }: ProductComponentProps) {
                 >
                   <Image
                     loader={ImageLoader}
-                    src={apiUrl + image.url}
+                    src={image.url}
                     alt="Imagem do produto"
                     layout="responsive"
                     width={100}
@@ -100,7 +98,7 @@ export default function Product({ product }: ProductComponentProps) {
             >
               <Image
                 loader={ImageLoader}
-                src={apiUrl + product.images[activeImage].url}
+                src={product.images[activeImage].url}
                 alt="Imagem do produto"
                 layout="responsive"
                 width={100}
@@ -115,7 +113,7 @@ export default function Product({ product }: ProductComponentProps) {
                 <div className={styles.plataformImage}>
                   <Image
                     loader={ImageLoader}
-                    src={apiUrl + product.logoPlataform}
+                    src={product.logoPlataform}
                     alt="Imagem do produto"
                     layout="fill"
                     unoptimized
@@ -141,7 +139,7 @@ export default function Product({ product }: ProductComponentProps) {
           </div>
           <FsLightbox
             toggler={fsLightboxIsOpen}
-            sources={[...product.images.map((image) => apiUrl + image.url)]}
+            sources={[...product.images.map((image) => image.url)]}
             slide={activeImage + 1}
           />
         </main>

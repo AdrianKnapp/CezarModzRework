@@ -40,7 +40,6 @@ export default function PrimaryBannerSlide({
     pauseOnHover: true,
   };
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return (
@@ -50,7 +49,7 @@ export default function PrimaryBannerSlide({
           <div key={banner.id}>
             <Image
               key={banner.title}
-              src={apiUrl + banner.banners.formats.medium.url}
+              src={banner.banners.formats.medium.url}
               alt={banner.title}
               width={1060}
               height={335}

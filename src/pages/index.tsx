@@ -56,8 +56,6 @@ type HomeProps = {
 export default function Home({ types, feedback, banners }: HomeProps) {
   const productsUrl = '/produtos?tipo=';
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   return (
     <>
       <Head>
@@ -81,10 +79,7 @@ export default function Home({ types, feedback, banners }: HomeProps) {
             {types.map((type) => (
               <Link key={type.type} href={`${productsUrl}${type.type}`}>
                 <a>
-                  <Button
-                    icon={apiUrl + type.icon[0]?.url}
-                    text={`${type.type}s`}
-                  />
+                  <Button icon={type.icon[0]?.url} text={`${type.type}s`} />
                 </a>
               </Link>
             ))}

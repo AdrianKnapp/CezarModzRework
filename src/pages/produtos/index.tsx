@@ -115,7 +115,6 @@ export default function Products({ plataforms, products }: ProductsProps) {
     }
   }
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return (
@@ -129,7 +128,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
           <header className={styles.filterContainer}>
             <div className={styles.filterPlataformImageContainer}>
               <Image
-                src={apiUrl + plataformChoseData[0].logo.url}
+                src={plataformChoseData[0].logo.url}
                 alt="Plataforma logo"
                 layout="fill"
                 loader={ImageLoader}
@@ -165,10 +164,8 @@ export default function Products({ plataforms, products }: ProductsProps) {
                           loader={ImageLoader}
                           src={
                             // eslint-disable-next-line operator-linebreak
-                            apiUrl +
-                            // eslint-disable-next-line operator-linebreak
-                            (product.images[0].formats?.thumbnail.url ||
-                              product.images[0].url)
+                            product.images[0].formats?.thumbnail.url ||
+                            product.images[0].url
                           }
                           alt={product.images[0].name}
                           layout="responsive"
@@ -204,7 +201,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
             <div className={styles.buttons}>
               {plataforms.map((plataform) => {
                 const PlataformImage = {
-                  src: apiUrl + plataform.logo.url,
+                  src: plataform.logo.url,
                   alt: plataform.plataform,
                   width: '40px',
                   height: '30px',
