@@ -249,6 +249,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
         toastStyle={{
           backgroundColor: 'var(--gray-500)',
           color: 'var(--white-900)',
+          boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.8)',
         }}
       />
     </>
