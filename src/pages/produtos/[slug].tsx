@@ -139,7 +139,7 @@ export default function Product({ product }: ProductComponentProps) {
               <h2>{product.price}</h2>
               <div className={styles.buttonContainer}>
                 <a
-                  href={`https://api.whatsapp.com/send?phone=551e+21&text=Ol%C3%A1%2C%20tenho%20interesse%20no%20produto%20${product.title}`}
+                  href={`https://api.whatsapp.com/send?phone=5519982551579&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20${product.type}%20${product.title}.`}
                   target="blank_"
                 >
                   <Button text="Comprar agora" />
@@ -158,7 +158,31 @@ export default function Product({ product }: ProductComponentProps) {
         <Accordion title="Descrição">
           <ReactMarkdown>{product.description}</ReactMarkdown>
         </Accordion>
-        <Accordion title="Instruções">Teste</Accordion>
+        <Accordion title="Instruções">
+          <>
+            <p>
+              <strong>Fala jogador, tudo certo?</strong>
+              aqui vão algumas informações que você precisa para adiquirir algum
+              dos nossos produtos:
+            </p>
+            <ol>
+              <li>
+                Você só precisa selecionar seu produto preferido e clicar em
+                &rdquo;comprar&rdquo;, automaticamente você será redirecinado
+                para nosso Whatsapp.
+              </li>
+              <li>
+                Um membro da nossa equipe estará esperando você para realizar a
+                etrega do seu produto.
+              </li>
+            </ol>
+            <strong>IMPORTANTE: </strong>
+            <p>
+              Não mude o texto automático do Whatsapp que você irá enviar, isso
+              irá agilizar o seu processo de compra.
+            </p>
+          </>
+        </Accordion>
       </section>
     </>
   ) : (
