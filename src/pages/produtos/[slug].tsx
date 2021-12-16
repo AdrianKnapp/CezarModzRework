@@ -145,10 +145,10 @@ export default function Product({ product }: ProductComponentProps) {
         </main>
       </section>
       <section className={`container ${styles.productDescription}`}>
-        <Accordion title="Benefícios">
+        <Accordion title="Descrição">
           <ReactMarkdown>{product.description}</ReactMarkdown>
         </Accordion>
-        <Accordion title="Detalhes">Teste</Accordion>
+        <Accordion title="Instruções">Teste</Accordion>
       </section>
     </>
   ) : (
