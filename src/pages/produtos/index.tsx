@@ -1,15 +1,20 @@
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import api from '../../services/api';
 
 import Button from '../../components/Button';
 import FilterButton from '../../components/FilterButton';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 type ProductImage = {
   id: number;
@@ -70,6 +75,22 @@ export default function Products({ plataforms, products }: ProductsProps) {
 
   let productsByPlataform = [];
   let plataformChoseData;
+
+  useEffect(() => {
+    if (router.isReady && !choseType) {
+      toast.error('Selecione um tipo de produto.', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => router.push('/'), 3000);
+    }
+  }, [choseType, router]);
 
   if (chosePlataform) {
     productsByPlataform = products.filter(
@@ -220,6 +241,12 @@ export default function Products({ plataforms, products }: ProductsProps) {
           </div>
         </section>
       )}
+      <ToastContainer
+        toastStyle={{
+          backgroundColor: 'var(--gray-500)',
+          color: 'var(--white-900)',
+        }}
+      />
     </>
   );
 }

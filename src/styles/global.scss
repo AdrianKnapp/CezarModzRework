@@ -102,3 +102,13 @@ body::-webkit-scrollbar-thumb {
     padding-bottom: 26rem;
   }
 }
+
+.Toastify__close-button {
+  color: var(--white-900);
+}
+.Toastify__close-button--default {
+  color: var(--white-900);
+}
+.Toastify__close-button > svg {
+  color: var(--white-900);
+}
