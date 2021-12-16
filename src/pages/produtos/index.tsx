@@ -142,6 +142,10 @@ export default function Products({ plataforms, products }: ProductsProps) {
     <>
       <Head>
         <title>Produtos | CezarModz</title>
+        <meta
+          name="description"
+          content="As melhores contas e serviços para GTA V você encontra aqui. Tá esperando o que? Vem conhecer! Contas, trajes, carros, upgrades..."
+        />
       </Head>
 
       {router.query.plataforma ? (

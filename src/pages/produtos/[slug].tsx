@@ -59,7 +59,17 @@ export default function Product({ product }: ProductComponentProps) {
   return !router.isFallback ? (
     <>
       <Head>
-        <title>{`${product.title} | CezarModz`}</title>
+        <title>
+          {`${product.type.toUpperCase()} ${product.title} | CezarModz`}
+          <meta
+            name="description"
+            content={`Melhor ${
+              product.type
+            } de GTA V que você verá é aqui! Acesse já e saiba mais de ${product.type.toUpperCase()} ${
+              product.title
+            }`}
+          />
+        </title>
       </Head>
       <section className="container">
         <main className={styles.productContainer}>
