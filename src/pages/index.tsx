@@ -56,6 +56,8 @@ type HomeProps = {
 export default function Home({ types, feedback, banners }: HomeProps) {
   const productsUrl = '/produtos?tipo=';
 
+  const productTypesASC = types.sort((a, b) => a.id - b.id);
+
   return (
     <>
       <Head>
@@ -79,10 +81,10 @@ export default function Home({ types, feedback, banners }: HomeProps) {
             Contas e serviços para PS4 e XBOX
           </p>
           <div className={styles.buttonsContainer}>
-            {types.map((type) => (
+            {productTypesASC.map((type) => (
               <Link key={type.type} href={`${productsUrl}${type.type}`}>
                 <a>
-                  <Button icon={type.icon[0]?.url} text={`${type.type}s`} />
+                  <Button icon={type.icon[0]?.url} text={type.type} />
                 </a>
               </Link>
             ))}
