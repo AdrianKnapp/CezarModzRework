@@ -74,7 +74,6 @@ export default function Products({ plataforms, products }: ProductsProps) {
   const choseType = router.query.tipo;
 
   let productsByPlataform = [];
-  let plataformChoseData;
 
   useEffect(() => {
     if (router.isReady && !choseType) {
@@ -90,23 +89,22 @@ export default function Products({ plataforms, products }: ProductsProps) {
 
       setTimeout(() => router.push('/'), 3000);
     }
+
+    if (chosePlataform) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      productsByPlataform = products.filter(
+        ({ plataforma, tipo }) =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          plataforma.plataform === chosePlataform && tipo.type === choseType,
+      );
+
+      setProductsList(productsByPlataform);
+    }
   }, [choseType, router]);
 
-  if (chosePlataform) {
-    productsByPlataform = products.filter(
-      ({ plataforma, tipo }) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        plataforma.plataform === chosePlataform && tipo.type === choseType,
-    );
-
-    if (!productsList.length) {
-      if (productsByPlataform.length) setProductsList(productsByPlataform);
-    }
-
-    plataformChoseData = plataforms.filter(
-      ({ plataform }) => plataform === chosePlataform,
-    );
-  }
+  const plataformChoseData = plataforms.filter(
+    ({ plataform }) => plataform === chosePlataform,
+  );
 
   function applyFilter(filtersObject) {
     const { order } = filtersObject;
@@ -128,12 +126,10 @@ export default function Products({ plataforms, products }: ProductsProps) {
   }
 
   function selectPlataform(plataformId) {
-    if (!chosePlataform) {
-      router.push({
-        pathname: router.pathname,
-        query: { ...router.query, plataforma: plataformId },
-      });
-    }
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, plataforma: plataformId },
+    });
   }
 
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
@@ -148,7 +144,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
         />
       </Head>
 
-      {router.query.plataforma ? (
+      {router.query.plataforma && plataformChoseData ? (
         <main className="container" data-aos="fade-right">
           <header className={styles.filterContainer}>
             <div className={styles.filterPlataformImageContainer}>
@@ -270,6 +266,19 @@ export const getStaticProps: GetStaticProps = async () => {
       status: 'error',
     };
   }
+
+  /* const productsByPlataform = plataforms.map((plataformData: Plataform) => {
+    const { plataform } = plataformData;
+    const productsList = products.filter(
+      ({ plataform: productPlataform }) => productPlataform === plataform,
+    );
+    return {
+      plataform,
+      color: plataformData.color,
+      logo: plataformData.logo,
+      products: productsList,
+    };
+  }); */
 
   return {
     props: {

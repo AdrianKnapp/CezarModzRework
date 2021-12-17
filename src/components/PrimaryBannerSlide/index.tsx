@@ -8,11 +8,7 @@ type Banner = {
   id: number;
   title: string;
   banners: {
-    formats: {
-      medium: {
-        url: string;
-      };
-    };
+    url: string;
   };
 };
 
@@ -49,7 +45,7 @@ export default function PrimaryBannerSlide({
           <div key={banner.id}>
             <Image
               key={banner.title}
-              src={banner.banners.formats.medium.url}
+              src={banner.banners.url}
               alt={banner.title}
               width={1060}
               height={335}
