@@ -267,6 +267,10 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   }
 
+  const orderedProductsByPriority = products.sort(
+    (a, b) => a.priority - b.priority,
+  );
+
   /* const productsByPlataform = plataforms.map((plataformData: Plataform) => {
     const { plataform } = plataformData;
     const productsList = products.filter(
@@ -283,7 +287,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       plataforms,
-      products,
+      products: orderedProductsByPriority,
     },
     revalidate: 60 * 10, // 10 minutes
   };
