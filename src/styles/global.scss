@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 html {
@@ -18,7 +19,6 @@ html {
 
   --orange-900: #FF8906;
 }
-
 @media (max-width: 1080px) {
   html {
     font-size: 93.75%;
