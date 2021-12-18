@@ -108,7 +108,7 @@ export default function Products({ plataforms, products }: ProductsProps) {
 
   function applyFilter(filtersObject) {
     const { order } = filtersObject;
-    const orderedProducts = [...productsByPlataform];
+    const orderedProducts = [...productsList];
     switch (order) {
       case 'ASC':
         orderedProducts.sort(
