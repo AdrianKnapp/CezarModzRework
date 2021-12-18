@@ -289,6 +289,6 @@ export const getStaticProps: GetStaticProps = async () => {
       plataforms,
       products: orderedProductsByPriority,
     },
-    revalidate: 60 * 10, // 10 minutes
+    revalidate: 60, // 60 seconds
   };
 };
