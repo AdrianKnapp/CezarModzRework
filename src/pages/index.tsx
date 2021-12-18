@@ -39,11 +39,7 @@ type Banner = {
   id: number;
   title: string;
   banners: {
-    formats: {
-      medium: {
-        url: string;
-      };
-    };
+    url: string;
   };
 };
 
