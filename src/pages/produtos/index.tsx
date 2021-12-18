@@ -137,7 +137,11 @@ export default function Products({ plataforms, products }: ProductsProps) {
   return (
     <>
       <Head>
-        <title>{`${String(choseType).toUpperCase()} | CezarModz`}</title>
+        <title>
+          {`${
+            choseType ? String(choseType).toUpperCase() : 'PRODUTOS'
+          } | CezarModz`}
+        </title>
         <meta
           name="description"
           content="As melhores contas e serviços para GTA V você encontra aqui. Tá esperando o que? Vem conhecer! Contas, trajes, carros, upgrades..."
