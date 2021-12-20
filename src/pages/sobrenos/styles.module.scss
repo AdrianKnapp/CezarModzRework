@@ -18,6 +18,15 @@
 
   .partnersContainer {
     display: grid;
-  grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .partners {
+    .partnersContainer {
+      grid-template-columns: 1fr;
+    }
   }
 }
