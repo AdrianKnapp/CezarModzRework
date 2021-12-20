@@ -272,7 +272,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   const orderedProductsByPriority = products.sort(
-    (a, b) => a.priority.priority - b.priority.priority,
+    (a, b) => a.priority?.priority - b.priority?.priority,
   );
 
   /* const productsByPlataform = plataforms.map((plataformData: Plataform) => {
