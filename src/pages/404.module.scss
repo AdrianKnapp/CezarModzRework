@@ -1,0 +1,12 @@
+@import '../styles/globalClasses';
+
+.errorContainer {
+  @extend .titleStyle;
+  text-align: center;
+
+  h2 {
+    font-size: 1.25rem;
+    color: var(--white-500);
+    font-weight: 400;
+  }
+}
