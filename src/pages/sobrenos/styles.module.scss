@@ -1,0 +1,23 @@
+@import '../../styles/globalClasses';
+
+.aboutUs {
+  h1 {
+    @extend .titleStyle;
+
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+}
+.partners {
+  h2 {
+    @extend .titleStyle;
+
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .partnersContainer {
+    display: grid;
+  grid-template-columns: 1fr 1fr;
+  }
+}

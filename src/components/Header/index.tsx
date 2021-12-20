@@ -26,11 +26,11 @@ export default function Header() {
                 <a>Início</a>
               </ActiveLink>
             </li>
-            {/* <li>
+            <li>
               <ActiveLink activeClassName={styles.active} href="/sobrenos">
                 <a>Sobre nós</a>
               </ActiveLink>
-            </li> */}
+            </li>
           </ul>
         </nav>
       </div>

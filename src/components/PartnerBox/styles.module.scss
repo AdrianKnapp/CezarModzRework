@@ -1,0 +1,24 @@
+@import '../../styles/globalClasses';
+
+.partnerBox {
+  @extend .boxStyle;
+
+  transition: .2s;
+
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  h3 {
+    @extend .titleStyle;
+
+    text-align: center;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: var(--orange-900);
+  }
+}
