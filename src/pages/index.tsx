@@ -87,9 +87,11 @@ export default function Home({ types, feedback, banners }: HomeProps) {
           </div>
         </main>
       </section>
-      <section className="container" data-aos="fade-right">
-        <FeedbackSlide feedback={feedback} />
-      </section>
+      {feedback.length > 0 && (
+        <section className="container" data-aos="fade-right">
+          <FeedbackSlide feedback={feedback} />
+        </section>
+      )}
     </>
   );
 }
