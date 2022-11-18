@@ -15,4 +15,8 @@
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 620px) {
+    padding: 1rem;
+  }
 }
