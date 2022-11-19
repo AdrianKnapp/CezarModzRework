@@ -62,7 +62,7 @@ export default function Home({ categories, feedback, banners }: HomeProps) {
           </p>
         </main>
       </section>
-      <section className="container">
+      <section className="container" data-aos="fade-right">
         <CategoryList categories={categories} />
       </section>
       {feedback.length > 0 && (

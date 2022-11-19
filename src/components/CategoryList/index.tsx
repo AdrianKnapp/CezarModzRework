@@ -29,7 +29,7 @@ const CategoryList = ({ categories }: CategoryListProps) => {
           <a className={styles.categoryBox}>
             <div className={styles.categoryImageContainer}>
               <Image
-                src={type.icon[0].url}
+                src={type.icon[0].formats.small.url}
                 alt={type.type}
                 width={1080}
                 height={1080}
