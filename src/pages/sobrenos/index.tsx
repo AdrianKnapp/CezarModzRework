@@ -22,12 +22,11 @@ export default function Sobrenos({ partners }: SobrenosProps) {
       <section id="about-us" className={`container ${styles.aboutUs}`}>
         <h1>Quem somos?</h1>
         <p>
-          A CezarModz é uma empresa que atua no mercado gamer há mais de 1 ano,
-          oferecendo contas e serviços à todo o mundo. Hoje contamos com nossa
-          conta no Instagram com mais de 3 mil seguidores, um site de alto nível
-          e dois canais no youtube que juntos ultrapassam 2 milhões de views.
-          Além de tudo isso, temos em nosso histórico mais de 500 contas
-          vendidas, 100% de aprovação e satisfação.
+          A CezarModz é a empresa pioneira no brasil no ramo de “modding”. Como a primeira empresa de modificação de contas de jogos on-line, a CezarModz dispõe de muita credibilidade, rapidez e eficiência em seus serviços. Dominando o mercado há 4 anos, vende as melhores contas e melhores serviços, com os melhores preços e segurança! 
+          Com mais de 1000 contas vendidas e 3000 serviços, a cezar ainda almeja patamares ainda maiores.
+          Faça parte da nossa equipe ou seja nosso cliente!
+          
+          Contatos abaixo
         </p>
       </section>
       {partnersExist && (
