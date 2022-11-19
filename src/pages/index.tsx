@@ -1,24 +1,12 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
-
-import Button from '../components/Button';
+import CategoryList, { Category } from '../components/CategoryList';
 import FeedbackSlide from '../components/FeedbackSlide';
 import PrimaryBannerSlide from '../components/PrimaryBannerSlide';
 
 import api from '../services/api';
 
 import styles from './home.module.scss';
-
-type IconProps = {
-  url: string;
-};
-
-type Type = {
-  id: number;
-  type: string;
-  icon: IconProps;
-};
 
 type ImageProps = {
   formats: {
@@ -44,16 +32,12 @@ type Banner = {
 };
 
 type HomeProps = {
-  types: Type[];
+  categories: Category[];
   feedback: Feedback[];
   banners: Banner[];
 };
 
-export default function Home({ types, feedback, banners }: HomeProps) {
-  const productsUrl = '/produtos?tipo=';
-
-  const productTypesASC = types.sort((a, b) => a.id - b.id);
-
+export default function Home({ categories, feedback, banners }: HomeProps) {
   return (
     <>
       <Head>
@@ -76,16 +60,10 @@ export default function Home({ types, feedback, banners }: HomeProps) {
           <p className={styles.description}>
             Contas e serviços para PS4 e XBOX
           </p>
-          <div className={styles.buttonsContainer}>
-            {productTypesASC.map((type) => (
-              <Link key={type.type} href={`${productsUrl}${type.type}`}>
-                <a>
-                  <Button icon={type.icon[0]?.url} text={type.type} />
-                </a>
-              </Link>
-            ))}
-          </div>
         </main>
+      </section>
+      <section className="container" data-aos="fade-right">
+        <CategoryList categories={categories} />
       </section>
       {feedback.length > 0 && (
         <section className="container" data-aos="fade-right">
@@ -97,13 +75,13 @@ export default function Home({ types, feedback, banners }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const types = await api.get('/tipos');
+  const categories = await api.get('/tipos');
   const feedback = await api.get('/depoimentos');
   const banners = await api.get('/banners');
 
   return {
     props: {
-      types: types.data,
+      categories: categories.data,
       feedback: feedback.data,
       banners: banners.data,
     },

@@ -1,0 +1,40 @@
+@import '../../styles/globalClasses';
+
+.categoriesContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.25rem;
+
+  a {
+    width: 100%;
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.categoryBox {
+  @extend .boxStyle;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: .2s;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: var(--orange-900);
+  }
+
+  @media (max-width: 620px) {
+    gap: 0.6rem;
+  }
+}
+
+.categoryImageContainer {
+  width: 100%;
+}
