@@ -42,7 +42,7 @@ export default function Footer() {
       <div className={`container ${styles.footerPolicity}`}>
         <p>Todos os direitos reservados</p>
         <a
-          href="https://www.flowcode.com/page/adrianknapp"
+          href="https://linktr.ee/adrianknapp"
           target="_blank"
           rel="noreferrer"
         >
