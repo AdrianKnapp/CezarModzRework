@@ -26,9 +26,17 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header />
       <Component {...pageProps} />
-      <Footer />
+      <Footer /> */}
+      <p
+        style={{
+          margin: '30px auto',
+          textAlign: 'center',
+        }}
+      >
+        Unable to access.
+      </p>
     </>
   );
 }
