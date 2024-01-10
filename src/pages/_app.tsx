@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app';
+// import { AppProps } from 'next/app';
 import AOS from 'aos';
 
 import { useEffect } from 'react';
@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from '../components/Footer';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: any) {
   useEffect(() => {
     AOS.init({
       // once: true,

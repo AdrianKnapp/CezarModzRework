@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Image from 'next/image';
+import React from 'react';
 
 import Slider from 'react-slick';
 
@@ -20,9 +22,9 @@ type ImageLoaderProps = {
   src: string;
 };
 
-export default function PrimaryBannerSlide({
+export const PrimaryBannerSlide: React.FC<PrimaryBannerSlideProps> = ({
   banners,
-}: PrimaryBannerSlideProps) {
+}) => {
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -38,26 +40,28 @@ export default function PrimaryBannerSlide({
 
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
+  const bannersList = banners.map((banner) => (
+    <div key={banner.id}>
+      <Image
+        key={banner.title}
+        src={banner.banners.url}
+        alt={banner.title}
+        width={1060}
+        height={335}
+        quality={65}
+        layout="responsive"
+        className={styles.bannerImage}
+        loader={ImageLoader}
+        unoptimized
+      />
+    </div>
+  ));
+
   return (
     <div className={styles.bannerContainer}>
-      <Slider {...sliderSettings}>
-        {banners.map((banner) => (
-          <div key={banner.id}>
-            <Image
-              key={banner.title}
-              src={banner.banners.url}
-              alt={banner.title}
-              width={1060}
-              height={335}
-              quality={65}
-              layout="responsive"
-              className={styles.bannerImage}
-              loader={ImageLoader}
-              unoptimized
-            />
-          </div>
-        ))}
-      </Slider>
+      <Slider {...sliderSettings}>{bannersList as any}</Slider>
     </div>
   );
-}
+};
+
+export default PrimaryBannerSlide;

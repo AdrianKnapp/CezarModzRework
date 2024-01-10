@@ -59,41 +59,43 @@ export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
 
   const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
-  return (
-    <div className={styles.bannerContainer}>
-      <h2>Depoimentos</h2>
-      <Slider {...sliderSettings}>
-        {feedback.map((item) => (
-          <div key={item.id} className={styles.feedbackContainer}>
-            <header>
-              <div className={styles.userProfileImageBox}>
-                <Image
-                  src={item.image.formats.thumbnail.url}
-                  alt="feedback-1"
-                  layout="fill"
-                  loader={ImageLoader}
-                  className={styles.userProfileImage}
-                  unoptimized
-                />
-              </div>
-              <div className={styles.profileTitle}>
-                <h3>{item.name}</h3>
-                <h6>Cliente</h6>
-              </div>
-            </header>
-            <div className={styles.feedbackText}>
-              <p>{item.feedback}</p>
-            </div>
-            <div className={styles.starsGroup}>
-              <AiFillStar className={styles.star} />
-              <AiFillStar className={styles.star} />
-              <AiFillStar className={styles.star} />
-              <AiFillStar className={styles.star} />
-              <AiFillStar className={styles.star} />
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
-  );
+  return null;
+
+  // return (
+  //   <div className={styles.bannerContainer}>
+  //     <h2>Depoimentos</h2>
+  //     <Slider {...sliderSettings}>
+  //       {feedback.map((item) => (
+  //         <div key={item.id} className={styles.feedbackContainer}>
+  //           <header>
+  //             <div className={styles.userProfileImageBox}>
+  //               <Image
+  //                 src={item.image.formats.thumbnail.url}
+  //                 alt="feedback-1"
+  //                 layout="fill"
+  //                 loader={ImageLoader}
+  //                 className={styles.userProfileImage}
+  //                 unoptimized
+  //               />
+  //             </div>
+  //             <div className={styles.profileTitle}>
+  //               <h3>{item.name}</h3>
+  //               <h6>Cliente</h6>
+  //             </div>
+  //           </header>
+  //           <div className={styles.feedbackText}>
+  //             <p>{item.feedback}</p>
+  //           </div>
+  //           <div className={styles.starsGroup}>
+  //             <AiFillStar className={styles.star} />
+  //             <AiFillStar className={styles.star} />
+  //             <AiFillStar className={styles.star} />
+  //             <AiFillStar className={styles.star} />
+  //             <AiFillStar className={styles.star} />
+  //           </div>
+  //         </div>
+  //       ))}
+  //     </Slider>
+  //   </div>
+  // );
 }
