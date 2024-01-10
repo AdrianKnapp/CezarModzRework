@@ -1,63 +1,63 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 
-import { AiFillStar } from 'react-icons/ai/';
-import SlideButton from '../SlideButton';
-import styles from './styles.module.scss';
+// import { AiFillStar } from 'react-icons/ai/';
+// import SlideButton from '../SlideButton';
+// import styles from './styles.module.scss';
 
-type ImageProps = {
-  formats: {
-    thumbnail: {
-      url: string;
-    };
-  };
-};
+// type ImageProps = {
+//   formats: {
+//     thumbnail: {
+//       url: string;
+//     };
+//   };
+// };
 
-type Feedback = {
-  id: number;
-  name: string;
-  feedback: string;
-  image: ImageProps;
-};
+// type Feedback = {
+//   id: number;
+//   name: string;
+//   feedback: string;
+//   image: ImageProps;
+// };
 
-type FeedbackSlideProps = {
-  feedback: Feedback[];
-};
+// type FeedbackSlideProps = {
+//   feedback: Feedback[];
+// };
 
-type ImageLoaderProps = {
-  src: string;
-};
+// type ImageLoaderProps = {
+//   src: string;
+// };
 
-export default function FeedbackSlide({ feedback }: FeedbackSlideProps) {
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: feedback.length >= 3 ? 3 : 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 8000,
-    pauseOnHover: true,
-    nextArrow: <SlideButton side="right" />,
-    prevArrow: <SlideButton side="left" />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 720,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
+export default function FeedbackSlide() {
+  // const sliderSettings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: feedback.length >= 3 ? 3 : 1,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 8000,
+  //   pauseOnHover: true,
+  //   nextArrow: <SlideButton side="right" />,
+  //   prevArrow: <SlideButton side="left" />,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 2,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 720,
+  //       settings: {
+  //         slidesToShow: 1,
+  //       },
+  //     },
+  //   ],
+  // };
 
-  const ImageLoader = ({ src }: ImageLoaderProps) => src;
+  // const ImageLoader = ({ src }: ImageLoaderProps) => src;
 
   return null;
 

@@ -1,7 +1,8 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import CategoryList, { Category } from '../components/CategoryList';
-import FeedbackSlide from '../components/FeedbackSlide';
+// import FeedbackSlide from '../components/FeedbackSlide';
+// eslint-disable-next-line import/no-named-as-default
 import PrimaryBannerSlide from '../components/PrimaryBannerSlide';
 
 import api from '../services/api';
@@ -67,7 +68,7 @@ export default function Home({ categories, feedback, banners }: HomeProps) {
       </section>
       {feedback.length > 0 && (
         <section className="container" data-aos="fade-right">
-          <FeedbackSlide feedback={feedback} />
+          {/* <FeedbackSlide feedback={feedback} /> */}
         </section>
       )}
     </>
