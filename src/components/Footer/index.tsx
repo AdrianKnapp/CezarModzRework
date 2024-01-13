@@ -35,7 +35,14 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            facebook
+            Facebook
+          </a>
+          <a
+            href="https://api.whatsapp.com/send?phone=5522998586044&text=Ol%C3%A1,%20estou%20interessado%20em%20um%20produto%20da%20CezarModz."
+            target="_blank"
+            rel="noreferrer"
+          >
+            WhatsApp
           </a>
         </div>
       </div>

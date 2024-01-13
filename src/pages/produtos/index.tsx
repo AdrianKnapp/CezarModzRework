@@ -1,3 +1,5 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
@@ -11,7 +13,6 @@ import styles from './styles.module.scss';
 
 import api from '../../services/api';
 
-import Button from '../../components/Button';
 import FilterButton from '../../components/FilterButton';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -74,6 +75,22 @@ export default function Products({ plataforms, products }: ProductsProps) {
   const choseType = router.query.tipo;
 
   let productsByPlataform = [];
+
+  const plataformsOrdered = [...plataforms];
+
+  const ps4 = plataforms.find((plataform) => plataform.plataform.includes('4'));
+  const ps5 = plataforms.find((plataform) => plataform.plataform.includes('5'));
+  const xboxOne = plataforms.find((plataform) =>
+    plataform.plataform.toLocaleLowerCase().includes('one'),
+  );
+  const xboxSeries = plataforms.find((plataform) =>
+    plataform.plataform.toLocaleLowerCase().includes('series'),
+  );
+
+  plataformsOrdered[0] = ps4;
+  plataformsOrdered[1] = ps5;
+  plataformsOrdered[2] = xboxOne;
+  plataformsOrdered[3] = xboxSeries;
 
   useEffect(() => {
     if (router.isReady && !choseType) {
@@ -224,23 +241,23 @@ export default function Products({ plataforms, products }: ProductsProps) {
           <div className={styles.plataformsContent}>
             <h2>Plataformas</h2>
             <div className={styles.buttons}>
-              {plataforms.map((plataform) => {
-                const PlataformImage = {
-                  src: plataform.logo.url,
-                  alt: plataform.plataform,
-                  width: '40px',
-                  height: '30px',
-                };
-                return (
-                  <Button
-                    key={plataform.id}
-                    onClick={() => selectPlataform(plataform.plataform)}
-                    bgcolor={plataform.color}
-                    image={PlataformImage}
-                    border="2px solid var(--white-900)"
-                  />
-                );
-              })}
+              {plataformsOrdered.map((plataform) => (
+                <button
+                  key={plataform.id}
+                  type="button"
+                  className={styles.button}
+                  onClick={() => selectPlataform(plataform.plataform)}
+                >
+                  <div className={styles.image}>
+                    <Image
+                      src={plataform.logo.url}
+                      alt={plataform.plataform}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </section>
@@ -271,7 +288,7 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   }
 
-  const orderedProductsByPriority = products.sort(
+  const orderedProductsByPriority = products?.sort(
     (a, b) => a.priority?.priority - b.priority?.priority,
   );
 
